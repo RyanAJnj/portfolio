@@ -1,11 +1,10 @@
-// api/openai.js
-import { OpenAI } from 'openai';
+import { OpenAI } from 'openai'; // Import OpenAI SDK
 
 export default async function handler(req, res) {
     if (req.method === 'POST') {
         try {
             const openai = new OpenAI({
-                apiKey: process.env.OPENAI_API_KEY,
+                apiKey: process.env.OPENAI_API_KEY, // API key from .env file
             });
 
             const response = await openai.chat.completions.create({
@@ -13,7 +12,7 @@ export default async function handler(req, res) {
                 messages: [
                     {
                         role: "user",
-                        content: req.body.prompt, // Receive the user message from frontend
+                        content: req.body.prompt, // Get prompt from the frontend
                     },
                 ],
                 temperature: 0.7,
